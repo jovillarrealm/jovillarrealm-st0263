@@ -5,6 +5,7 @@ sudo chmod 0777 /srv/nfs
 # Install kubernetes CSI driver
 sudo mv /etc/exports /etc/exports.bak
 
+# el directorio a exportar seria el /srv/nfs
 echo '/srv/nfs 10.0.0.0/24(rw,sync,no_subtree_check)' | sudo tee /etc/exports
 
 sudo systemctl restart nfs-kernel-server
