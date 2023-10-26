@@ -26,6 +26,7 @@
 
 #### Primero se crean las VM de los nodos y del líder con E2-MICRO Y Ubuntu 22.04 y se corre:
     
+    
 	sudo snap refresh
     
 	
@@ -85,12 +86,4 @@
 #### Y para correr el archivo de configuraciones del wordpress utilizamos lo siguiente:
     
 	microk8s kubectl apply -f wordpress-deployment.yaml
-    
-#### Luego se corren los servicios de configuración de la siguiente forma
-
-    microk8s kubectl apply -f mysql-secret.yaml
-    microk8s kubectl apply -f mysql-pv-pvc.yaml
-    microk8s kubectl apply -f mysql-statefulset.yaml
-    microk8s kubectl apply -f mysql-service.yaml
-    microk8s kubectl apply -f wordpress-pv-pvc.yaml
-    microk8s kubectl apply -f wordpress-deployment.yaml
+    ```
