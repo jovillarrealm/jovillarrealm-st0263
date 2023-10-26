@@ -50,7 +50,7 @@
 #### En la máquina que va a ser el líder (control plane) usamos el código (se corre por cada máquina nueva): 
     
 	microk8s add-node
-    ![WhatsApp Image 2023-10-20 at 7 33 58 PM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/20dc0853-5f27-4be2-90d4-590616f52d52)
+![WhatsApp Image 2023-10-20 at 7 33 58 PM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/20dc0853-5f27-4be2-90d4-590616f52d52)
 
 	
 #### De acá obtenemos los códigos únicos para más adelante utilizar en ![Uploading WhatsApp Image 2023-10-20 at 7.33.58 PM.jpeg…]()
