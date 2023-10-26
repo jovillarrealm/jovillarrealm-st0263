@@ -1,13 +1,16 @@
-## ST0263 Topico especiales en telemática
-
-## Edwin Nelson Montoya Munera, emontoya@eafit.edu.co
-
-## Reto 4 Topicos Especiales en Telemática
-
+## Información de la materia
+	ST0263 Topico especiales en telemática
+ 
 ## Integrantes del equipo
 	Jorge A. Villarreal
  	Daniel Gonzalez
   	Martin Villegas
+
+## Profesor
+	Edwin Nelson Montoya Munera, emontoya@eafit.edu.co
+
+## Nombre del proyecto
+	Reto 4 Topicos Especiales en Telemática
 
 ## Objetivos logrados en el proyecto
 
