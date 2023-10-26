@@ -1,4 +1,18 @@
+# Reto 4 Topicos Especiales en Telemática
 
+## Integrantes del equipo
+	##### Jorge Villarreal
+ 	##### Daniel Gonzalez
+  	##### Martin Villegas
+
+## Objetivos logrados en el proyecto
+
+## Objetivos no logrados o a mejorar en el proyecto
+
+
+## Modo de ejecucion del proyecto
+
+## Instrucciones configuracion y creación proyecto
 Primero se crean las VM de los nodos y del líder con E2-MICRO Y Ubuntu 22.04 y se corre:
 	sudo snap refresh
 	
