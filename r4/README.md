@@ -25,9 +25,9 @@
 ## Instrucciones configuracion y creación proyecto
 
 #### Primero se crean las VM de los nodos y del líder con E2-MICRO Y Ubuntu 22.04 y se corre:
-    ```
+   
 	sudo snap refresh
-    ```
+    
 	
 #### En cada maquina instalamos el microk8s con : 
     ```
