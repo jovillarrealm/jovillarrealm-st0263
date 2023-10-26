@@ -103,3 +103,10 @@
     microk8s kubectl apply -f mysql-service.yaml
     microk8s kubectl apply -f wordpress-pv-pvc.yaml
     microk8s kubectl apply -f wordpress-deployment.yaml
+
+
+
+## Referencias
+	- https://microk8s.io/docs/nfs
+ 	- https://engr-syedusmanahmad.medium.com/wordpress-on-kubernetes-cluster-step-by-step-guide-749cb53e27c7
+  	- https://www.youtube.com/watch?v=DCoBcpOA7W4
