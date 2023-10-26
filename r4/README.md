@@ -7,12 +7,15 @@
 
 ## Objetivos logrados en el proyecto
 
+
 ## Objetivos no logrados o a mejorar en el proyecto
 
 
 ## Modo de ejecucion del proyecto
 
+
 ## Instrucciones configuracion y creación proyecto
+
 ### Primero se crean las VM de los nodos y del líder con E2-MICRO Y Ubuntu 22.04 y se corre:
 	sudo snap refresh
 	
@@ -36,25 +39,20 @@
 	microk8s kubectl get nodes
 
 
-
-
 ### En el nodo principal creamos la base de datos definiendo una configuración por medio de un archivo yaml y luego aplicamos los cambios de esa configuración por medio del siguiente comando: 
 	microk8s kubectl apply -f mysql-statefulset.yaml
 
 
-
 ### Luego para ver las bases de datos que tenemos corremos el siguiente comando (debe mostrar 2 porque tenemos 2 réplicas):
-microk8s kubectl get pods
+	microk8s kubectl get pods
 
 
 ### Y para ver todos los servicios que se están corriendo en el cluster lo hacemos con el comando (My service es el load balancer):
 	microk8s kubectl get svc
 
 
-
-
-Luego en el plane se hacen unos archivos de configuración yaml para el pvc del wordpress para luego proceder a crear el wordpress como tal. Luego de tener el yaml para el pvc corremos este comando:
+### Luego en el plane se hacen unos archivos de configuración yaml para el pvc del wordpress para luego proceder a crear el wordpress como tal. Luego de tener el yaml para el pvc corremos este comando:
 	kubectl apply -f wordpress-pvc.yaml
 
-Y para correr el archivo de configuraciones del wordpress utilizamos lo siguiente:
+### Y para correr el archivo de configuraciones del wordpress utilizamos lo siguiente:
 	microk8s kubectl apply -f wordpress-deployment.yaml
