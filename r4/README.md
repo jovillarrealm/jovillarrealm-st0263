@@ -53,8 +53,7 @@
 ![WhatsApp Image 2023-10-20 at 7 33 58 PM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/20dc0853-5f27-4be2-90d4-590616f52d52)
 
 	
-#### De acá obtenemos los códigos únicos para más adelante utilizar en ![Uploading WhatsApp Image 2023-10-20 at 7.33.58 PM.jpeg…]()
-cada máquina y poderla conectar al líder.
+#### De acá obtenemos los códigos únicos para más adelante utilizar en cada máquina y poderla conectar al líder.
 
 
 #### Cuando se tienen los códigos necesarios se corre la siguiente línea en cada máquina para conectarse al líder:
@@ -67,6 +66,7 @@ cada máquina y poderla conectar al líder.
     
 	microk8s kubectl get nodes
     
+![Screen Shot 2023-10-26 at 12 07 22 AM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/cde55766-a40e-49b2-bf76-d86004127d9e)
 
 
 #### En el nodo principal creamos la base de datos definiendo una configuración por medio de un archivo yaml y luego aplicamos los cambios de esa configuración por medio del siguiente comando: 
