@@ -83,6 +83,7 @@
     
 	microk8s kubectl get svc
     
+![WhatsApp Image 2023-10-25 at 11 52 54 PM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/bc52598b-d779-4b87-bfce-09a6a6a24b5f)
 
 
 #### Luego en el plane se hacen unos archivos de configuración yaml para el pvc del wordpress para luego proceder a crear el wordpress como tal. Luego de tener el yaml para el pvc corremos este comando:
