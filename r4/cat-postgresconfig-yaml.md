@@ -143,8 +143,15 @@ Para tener wordpress vamos a usar cositas bonitas SIN EL LOAD BALANCER AAAAAAAAA
     EOF
 Y luego se construye con el deployment, servicio e ingress.
 
-    microk8s kubectl apply -f pvc-nfs.yaml
-    microk8s kubectl describe pvc my-pvc
+    microk8s kubectl apply -f wordpress-nfs-pvc.yaml
     microk8s kubectl apply -f wordpress-deployment.yaml
+    microk8s kubectl describe pvc pvc-nfs
     microk8s kubectl apply -f wordpress-service.yaml
     microk8s kubectl apply -f wordpress-ingress.yaml
+
+Si se necesita borrar
+
+    microk8s kubectl delete ingress wordpress-ingress
+    microk8s kubectl delete svc wordpress-service
+    microk8s kubectl delete deployment wordpress-deployment
+    microk8s kubectl delete pvc wordpress-nfs-pvc
