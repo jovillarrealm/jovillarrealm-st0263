@@ -102,43 +102,42 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-        name: postgres  # Sets Deployment name
+    name: postgres  # Sets Deployment name
     spec:
-        replicas: 1
-        selector:
-            matchLabels:
-                app: postgres
-        template:
-            metadata:
-                labels:
-                    app: postgres
-            spec:
-                containers:
-                    - name: postgres
-                    image: postgres:10.1  # Sets Image
-                    imagePullPolicy: "IfNotPresent"
-                    ports:
-                        - containerPort: 5432  # Exposes container port
-                    envFrom:
-                        - configMapRef:
-                            name: postgres-config
-                    volumeMounts:
-                        - mountPath: /var/lib/postgresql/data
-                        name: postgredb
-                volumes:
-                    - name: postgredb
-                    persistentVolumeClaim:
-                        claimName: postgres-pv-claim
+    replicas: 1
+    selector:
+        matchLabels:
+        app: postgres
+    template:
+        metadata:
+        labels:
+            app: postgres
+        spec:
+        containers:
+            - name: postgres
+            image: postgres:10.1  # Sets Image
+            imagePullPolicy: "IfNotPresent"
+            ports:
+                - containerPort: 5432  # Exposes container port
+            envFrom:
+                - configMapRef:
+                    name: postgres-config
+            volumeMounts:
+                - mountPath: /var/lib/postgresql/data
+                name: postgredb
+        volumes:
+            - name: postgredb
+            persistentVolumeClaim:
+                claimName: postgres-pv-claim
     EOF
 
-    
     cat <<EOF > postgres-service.yaml
     apiVersion: v1
     kind: Service
     metadata:
         name: postgres # Sets service name
-    labels:
-        app: postgres # Labels and Selectors
+        labels:
+            app: postgres # Labels and Selectors
     spec:
         type: NodePort # Sets service type
         ports:
