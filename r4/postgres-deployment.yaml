@@ -1,3 +1,5 @@
+cat <<EOF > postgres-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +16,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:10.1  # Sets Image
+          image: postgres:10.1 # Sets Image
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432  # Exposes container port
@@ -28,3 +30,5 @@ spec:
         - name: postgredb
           persistentVolumeClaim:
             claimName: postgres-pv-claim
+
+EOF
