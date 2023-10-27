@@ -1,7 +1,7 @@
 
 #### BD
 Para tener la base de datos vamos a necesitar un pv, pvc, configuración en forma de un ConfigMap, y un Deployment que va a ser expuesto de un servicio. Aquí se pueden crear los archivos correspondientes copiando lo siguiente.
-    
+
     cat <<EOF > postgres-config.yaml
 
     apiVersion: v1
@@ -15,7 +15,7 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     POSTGRES_USER: admin
     POSTGRES_PASSWORD: psltest
 
-    EOF 
+    EOF
     
     cat <<EOF > postgres-pvc-pv.yaml
 
@@ -113,7 +113,8 @@ Y se crean las cosas
     microk8s kubectl apply -f postgres-service.yaml
 
 #### NFS
-El directorio que va a ser usado es `/srv/nfs` que va a ser expuesto a la subred 10.128.0.0/24. La siguiente configuración debe hacerse en el servidor que vaya a servir de mo
+
+El directorio que va a ser usado es `/srv/nfs` que va a ser expuesto a la subred 10.128.0.0/24. La siguiente configuración debe hacerse en el servidor que vaya a servir de almacenamiento.
 
 Install kubernetes CSI driver
 
@@ -135,7 +136,7 @@ Install kubernetes CSI driver
     microk8s kubectl wait pod --selector app.kubernetes.io/name=csi-driver-nfs --for condition=ready --namespace kube-system
     microk8s kubectl get csidrivers
 
-Tambien vamos a hacer un storage class para tener nfs en un servidor, en este caso se necesita cambiar la IP 10.128.0.47
+Tambien vamos a hacer un storage class para tener nfs en un servidor específico que vaya a ser usado, en este caso se necesita cambiar la IP Privada (de GCP, no en cluster) 10.128.0.47
 
     cat <<EOF > sc-nfs.yaml
     apiVersion: storage.k8s.io/v1
@@ -167,6 +168,7 @@ Tambien vamos a hacer un storage class para tener nfs en un servidor, en este ca
     EOF
 
 Se aplica y se chequea
+
     microk8s kubectl apply -f - < sc-nfs.yaml
     microk8s kubectl apply -f - < pvc-nfs.yaml
     microk8s kubectl describe pvc my-pvc
