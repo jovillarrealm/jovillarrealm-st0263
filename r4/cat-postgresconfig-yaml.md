@@ -94,7 +94,7 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
             - ReadWriteMany  # Sets read and write access
         resources:
             requests:
-            storage: 5Gi  # Sets volume size
+                storage: 5Gi  # Sets volume size
     EOF
 
 
