@@ -27,9 +27,8 @@ spec:
 storageClassName: nfs-csi
 accessModes: [ReadWriteOnce]
 resources:
-    requests:
+  requests:
     storage: 5Gi
-
 EOF
 microk8s kubectl apply -f - < pvc-nfs.yaml
 microk8s kubectl describe pvc my-pvc

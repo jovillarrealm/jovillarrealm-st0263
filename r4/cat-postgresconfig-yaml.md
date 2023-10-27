@@ -23,7 +23,7 @@ Install kubernetes CSI driver
     microk8s kubectl wait pod --selector app.kubernetes.io/name=csi-driver-nfs --for condition=ready --namespace kube-system
     microk8s kubectl get csidrivers
 
-Tambien vamos a hacer un storage class para tener nfs en un servidor específico que vaya a ser usado, en este caso se necesita cambiar la IP Privada (de GCP, no en cluster) 10.128.0.47
+Tambien vamos a hacer un storage class para tener nfs en un servidor específico que vaya a ser usado, en este caso se necesita cambiar la IP Privada (de GCP, no en cluster) 10.128.0.47. (Este comando es para crear el archivo dinamicamente, pero ya también está creado).
 
     cat <<EOF > sc-nfs.yaml
     apiVersion: storage.k8s.io/v1
@@ -47,7 +47,7 @@ Se aplica y se chequea
 
 #### BD
 
-Para tener la base de datos vamos a necesitar un pv, pvc, configuración en forma de un ConfigMap, y un Deployment que va a ser expuesto de un servicio. Aquí se pueden crear los archivos correspondientes copiando lo siguiente.
+Para tener la base de datos vamos a necesitar un pv, pvc, configuración en forma de un ConfigMap, y un Deployment que va a ser expuesto de un servicio. Aquí se pueden crear los archivos correspondientes copiando lo siguiente. (Se omite el yaml del deployment dado que no requiere configurar).
 
     cat <<EOF > postgres-config.yaml
     apiVersion: v1
@@ -97,40 +97,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
                 storage: 5Gi  # Sets volume size
     EOF
 
-
-    cat <<EOF > postgres-deployment.yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: postgres  # Sets Deployment name
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: postgres
-      template:
-        metadata:
-          labels:
-            app: postgres
-      spec: 
-      containers:
-        - name: postgres
-          image: postgres:10.1  # Sets Image
-          imagePullPolicy: "IfNotPresent"
-          ports:
-            - containerPort: 5432  # Exposes container port
-          envFrom:
-            - configMapRef:
-              name: postgres-config
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
-      volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
-    EOF
-
     cat <<EOF > postgres-service.yaml
     apiVersion: v1
     kind: Service
@@ -144,7 +110,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
             - port: 5432 # Sets port to run the postgres application
         selector:
             app: postgres
-
     EOF
 
 Y se crean las cosas
@@ -158,3 +123,26 @@ Y se crean las cosas
 #### WordPress
 
 Para tener wordpress vamos a usar cositas bonitas SIN EL LOAD BALANCER AAAAAAAAAAAAAAAAAAAAA
+
+    cat <<EOF > wordpress-service.yaml
+    kind: Service
+    apiVersion: v1
+    metadata:
+      name: wordpress-service
+    spec:
+      type: NodePort
+      selector:
+        app: wordpress
+    ports:
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 80
+        nodePort: 30007
+    EOF
+Y luego se construye con el deployment, servicio e ingress.
+
+    microk8s kubectl apply -f pvc-nfs.yaml
+    microk8s kubectl apply -f wordpress-deployment.yaml
+    microk8s kubectl apply -f wordpress-service.yaml
+    microk8s kubectl apply -f ingress.yaml
