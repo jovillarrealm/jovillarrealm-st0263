@@ -41,24 +41,11 @@ Tambien vamos a hacer un storage class para tener nfs en un servidor específico
         - nfsvers=4.1
     EOF
 
-    cat <<EOF > pvc-nfs.yaml
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-        name: my-pvc
-    spec:
-        storageClassName: nfs-csi
-        accessModes: [ReadWriteOnce]
-        resources:
-            requests:
-                storage: 40Gi
-    EOF
+
 
 Se aplica y se chequea
 
     microk8s kubectl apply -f - < sc-nfs.yaml
-    microk8s kubectl apply -f - < pvc-nfs.yaml
-    microk8s kubectl describe pvc my-pvc
 
 #### BD
 
