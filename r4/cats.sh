@@ -158,7 +158,7 @@ spec:
       claimName: wordpress-nfs-pvc
 EOF
 
-cat <<EOF > ingress.yaml
+cat <<EOF > wordpress-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -174,4 +174,21 @@ spec:
             name: wordpress-service
             port:
               number: 80
+EOF
+
+cat <<EOF > wordpress-service.yaml
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: wordpress-service
+  spec:
+    type: NodePort
+    selector:
+      app: wordpress
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30007
 EOF
