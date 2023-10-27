@@ -4,7 +4,7 @@ metadata:
   name: my-pvc
 spec:
   storageClassName: nfs-csi
-    accessModes: [ReadWriteOnce]
-    resources:
+  accessModes: [ReadWriteOnce]
+  resources:
       requests:
-        storage: 40Gi
+        storage: 10Gi
