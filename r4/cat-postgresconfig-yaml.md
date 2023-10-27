@@ -41,8 +41,6 @@ Tambien vamos a hacer un storage class para tener nfs en un servidor específico
         - nfsvers=4.1
     EOF
 
-
-
 Se aplica y se chequea
 
     microk8s kubectl apply -f - < sc-nfs.yaml
@@ -52,7 +50,6 @@ Se aplica y se chequea
 Para tener la base de datos vamos a necesitar un pv, pvc, configuración en forma de un ConfigMap, y un Deployment que va a ser expuesto de un servicio. Aquí se pueden crear los archivos correspondientes copiando lo siguiente.
 
     cat <<EOF > postgres-config.yaml
-
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -67,7 +64,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     EOF
     
     cat <<EOF > postgres-pv.yaml
-
     kind: PersistentVolume
     apiVersion: v1
     metadata:
@@ -104,7 +100,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
 
 
     cat <<EOF > postgres-deployment.yaml
-
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -140,7 +135,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
 
     
     cat <<EOF > postgres-service.yaml
-
     apiVersion: v1
     kind: Service
     metadata:
