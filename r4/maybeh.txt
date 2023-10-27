@@ -1,15 +1,4 @@
-    cat <<EOF > pvc-nfs.yaml
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-        name: my-pvc
-    spec:
-        storageClassName: nfs-csi
-        accessModes: [ReadWriteOnce]
-        resources:
-            requests:
-                storage: 40Gi
-    EOF
+
 
 
 
