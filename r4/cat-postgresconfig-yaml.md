@@ -98,7 +98,7 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     EOF
 
 
-
+    cat <<EOF > postgres-deployment.yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -129,7 +129,7 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
                   - name: postgredb
                     persistentVolumeClaim:
                         claimName: postgres-pv-claim
-
+    EOF
 
     
     cat <<EOF > postgres-service.yaml
