@@ -1,4 +1,5 @@
 Para tener la base de datos vamos a necesitar un pv, pvc, configuración en forma de un ConfigMap, y un Deployment
+    
     cat <<EOF > postgres-config.yaml
 
     apiVersion: v1
@@ -18,6 +19,7 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
 
 
 Para configurar el pv y pvc de la base de datos
+    
     cat <<EOF > postgres-pvc-pv.yaml
 
     kind: PersistentVolume
@@ -92,6 +94,7 @@ Para el deployment de la base de datos que usa los comandos anteriores
 
     kubectl apply -f postgres-deployment.yaml
 Ya por último podemos crear el servicio que va a estar disponible al cluster :3
+    
     cat <<EOF > postgres-service.yaml
 
     apiVersion: v1
