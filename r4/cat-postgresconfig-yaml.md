@@ -121,10 +121,10 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
                             - containerPort: 5432  # Exposes container port
                         envFrom:
                             - configMapRef:
-                            name: postgres-config
+                                name: postgres-config
                         volumeMounts:
                             - mountPath: /var/lib/postgresql/data
-                            name: postgredb
+                                name: postgredb
                 volumes:
                     - name: postgredb
                         persistentVolumeClaim:
