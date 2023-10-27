@@ -115,20 +115,20 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
             spec:
                 containers:
                     - name: postgres
-                        image: postgres:10.1  # Sets Image
-                        imagePullPolicy: "IfNotPresent"
-                        ports:
-                            - containerPort: 5432  # Exposes container port
-                        envFrom:
-                            - configMapRef:
-                                name: postgres-config
-                        volumeMounts:
-                            - mountPath: /var/lib/postgresql/data
-                                name: postgredb
+                    image: postgres:10.1  # Sets Image
+                    imagePullPolicy: "IfNotPresent"
+                    ports:
+                        - containerPort: 5432  # Exposes container port
+                    envFrom:
+                        - configMapRef:
+                            name: postgres-config
+                    volumeMounts:
+                        - mountPath: /var/lib/postgresql/data
+                        name: postgredb
                 volumes:
                     - name: postgredb
-                        persistentVolumeClaim:
-                            claimName: postgres-pv-claim
+                    persistentVolumeClaim:
+                        claimName: postgres-pv-claim
     EOF
 
     
