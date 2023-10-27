@@ -99,7 +99,6 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
 
 
 
-    cat <<EOF > postgres-deployment.yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -108,30 +107,29 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
         replicas: 1
         selector:
             matchLabels:
-            app: postgres
+                app: postgres
         template:
             metadata:
-            labels:
-                app: postgres
+                labels:
+                    app: postgres
             spec:
-            containers:
-              - name: postgres
-                image: postgres:10.1 # Sets Image
-                imagePullPolicy: "IfNotPresent"
-                ports:
-                  - containerPort: 5432  # Exposes container port
-                envFrom:
-                  - configMapRef:
-                    name: postgres-config
-                volumeMounts:
-                  - mountPath: /var/lib/postgresql/data
-                    name: postgredb
-            volumes:
-              - name: postgredb
-                persistentVolumeClaim:
-                    claimName: postgres-pv-claim
+                containers:
+                  - name: postgres
+                    image: postgres:10.1  # Sets Image
+                    imagePullPolicy: "IfNotPresent"
+                    ports:
+                      - containerPort: 5432  # Exposes container port
+                    envFrom:
+                      - configMapRef:
+                        name: postgres-config
+                    volumeMounts:
+                      - mountPath: /var/lib/postgresql/data
+                        name: postgredb
+                volumes:
+                  - name: postgredb
+                    persistentVolumeClaim:
+                        claimName: postgres-pv-claim
 
-    EOF
 
     
     cat <<EOF > postgres-service.yaml
