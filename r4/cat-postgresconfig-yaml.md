@@ -53,13 +53,13 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     apiVersion: v1
     kind: ConfigMap
     metadata:
-    name: postgres-config
-    labels:
-        app: postgres
+        name: postgres-config
+        labels:
+            app: postgres
     data:
-    POSTGRES_DB: postgresdb
-    POSTGRES_USER: admin
-    POSTGRES_PASSWORD: psltest
+        POSTGRES_DB: postgresdb
+        POSTGRES_USER: admin
+        POSTGRES_PASSWORD: psltest
 
     EOF
     
@@ -67,34 +67,34 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     kind: PersistentVolume
     apiVersion: v1
     metadata:
-    name: postgres-pv-volume  # Sets PV's name
-    labels:
-        type: local  # Sets PV's type to local
-        app: postgres
+        name: postgres-pv-volume  # Sets PV's name
+        labels:
+            type: local  # Sets PV's type to local
+            app: postgres
     spec:
-    storageClassName: manual
-    capacity:
-        storage: 5Gi # Sets PV Volume
-    accessModes:
-        - ReadWriteMany
-    hostPath:
-        path: "/mnt/data"
+        storageClassName: manual
+        capacity:
+            storage: 5Gi # Sets PV Volume
+        accessModes:
+            - ReadWriteMany
+        hostPath:
+            path: "/mnt/data"
     EOF
 
     cat <<EOF > postgres-pvc.yaml
     kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
-    name: postgres-pv-claim  # Sets name of PVC
-    labels:
-        app: postgres
+        name: postgres-pv-claim  # Sets name of PVC
+        labels:
+            app: postgres
     spec:
-    storageClassName: manual
-    accessModes:
-        - ReadWriteMany  # Sets read and write access
-    resources:
-        requests:
-        storage: 5Gi  # Sets volume size
+        storageClassName: manual
+        accessModes:
+            - ReadWriteMany  # Sets read and write access
+        resources:
+            requests:
+            storage: 5Gi  # Sets volume size
     EOF
 
 
@@ -103,33 +103,33 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-    name: postgres  # Sets Deployment name
+        name: postgres  # Sets Deployment name
     spec:
-    replicas: 1
-    selector:
-        matchLabels:
-        app: postgres
-    template:
-        metadata:
-        labels:
+        replicas: 1
+        selector:
+            matchLabels:
             app: postgres
-        spec:
-        containers:
-            - name: postgres
-            image: postgres:10.1 # Sets Image
-            imagePullPolicy: "IfNotPresent"
-            ports:
-                - containerPort: 5432  # Exposes container port
-            envFrom:
-                - configMapRef:
-                    name: postgres-config
-            volumeMounts:
-                - mountPath: /var/lib/postgresql/data
-                name: postgredb
-        volumes:
-            - name: postgredb
-            persistentVolumeClaim:
-                claimName: postgres-pv-claim
+        template:
+            metadata:
+            labels:
+                app: postgres
+            spec:
+            containers:
+                - name: postgres
+                image: postgres:10.1 # Sets Image
+                imagePullPolicy: "IfNotPresent"
+                ports:
+                    - containerPort: 5432  # Exposes container port
+                envFrom:
+                    - configMapRef:
+                        name: postgres-config
+                volumeMounts:
+                    - mountPath: /var/lib/postgresql/data
+                    name: postgredb
+            volumes:
+                - name: postgredb
+                persistentVolumeClaim:
+                    claimName: postgres-pv-claim
 
     EOF
 
@@ -138,15 +138,15 @@ Para tener la base de datos vamos a necesitar un pv, pvc, configuración en form
     apiVersion: v1
     kind: Service
     metadata:
-    name: postgres # Sets service name
+        name: postgres # Sets service name
     labels:
         app: postgres # Labels and Selectors
     spec:
-    type: NodePort # Sets service type
-    ports:
-        - port: 5432 # Sets port to run the postgres application
-    selector:
-        app: postgres
+        type: NodePort # Sets service type
+        ports:
+            - port: 5432 # Sets port to run the postgres application
+        selector:
+            app: postgres
 
     EOF
 
