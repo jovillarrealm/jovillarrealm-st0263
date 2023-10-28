@@ -15,10 +15,11 @@
 ## Objetivos logrados en el proyecto
 
 1. Desplegamos con éxito un clúster de Kubernetes utilizando el software microk8s en cuatro máquinas virtuales en Google Cloud Platform (GPC), cumpliendo con el requisito de no utilizar un clúster como servicio administrado por GCP.
-2. Implementamos un balanceador de cargas y garantizamos alta disponibilidad en la capa de aplicación, base de datos y almacenamiento.
-3. Desarrollamos una aplicación Wordpress en la nube GCP, alojada en un clúster de Kubernetes basado en microk8s.
-4. Creamos un repositorio en GitHub para el reto4 con todas las fuentes de la aplicación, adaptación, documentación, y otros componentes relacionados.
-5. Logramos configurar un servidor de NFS para ser usado como volumen por microk8s según su [tutorial](https://microk8s.io/docs/nfs).
+2. Implementamos un controlador de Ingress.
+3. Desplegamos una aplicación Wordpress en la nube GCP, alojada en un clúster de Kubernetes basado en microk8s.
+4. Desplegamos una base de datos (postgres) en el mismo cluster.
+5. Creamos un repositorio en GitHub para el reto4 con todas las fuentes de la aplicación, adaptación, documentación, y otros componentes relacionados.
+6. Logramos configurar un servidor de NFS para ser usado como volumen por microk8s según su [tutorial](https://microk8s.io/docs/nfs).
 
 ## Objetivos No Logrados:
 1. A pesar de tener funcionando la base de datos y la aplicación de wordpress, la conexión entre ellas falla.
