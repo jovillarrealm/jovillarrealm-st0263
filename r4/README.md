@@ -25,6 +25,7 @@
 2. Un nombre de dominio.
 
 
+![imagen](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/88699002/acdff9d7-7655-4b73-a57b-ef3fab5ca293)
 
 
 
@@ -232,11 +233,8 @@ Para tener wordpress vamos a usar cositas bonitas SIN EL LOAD BALANCER AAAAAAAAA
     EOF
 Y luego se construye con el deployment, servicio e ingress.
 
-    microk8s kubectl apply -f postgres-pv.yaml
-    microk8s kubectl apply -f postgres-pvc.yaml
-    microk8s kubectl apply -f postgres-deployment.yaml
-    microk8s kubectl apply -f postgres-service.yaml
 
+La conexión entre wordpress y postgres está mal enotnces para reproducir la pantalla mostrada al principio solo se suben los servicios necesarios para wordpress. 
 
     microk8s kubectl apply -f wordpress-nfs-pvc.yaml
     microk8s kubectl apply -f wordpress-deployment.yaml
@@ -244,6 +242,13 @@ Y luego se construye con el deployment, servicio e ingress.
     microk8s kubectl apply -f wordpress-service.yaml
     microk8s kubectl apply -f wordpress-ingress.yaml
     microk8s kubectl get all -o wide
+
+Para un postgres que sirve autocontenido está
+
+    microk8s kubectl apply -f postgres-pv.yaml
+    microk8s kubectl apply -f postgres-pvc.yaml
+    microk8s kubectl apply -f postgres-deployment.yaml
+    microk8s kubectl apply -f postgres-service.yaml
 
 Si se necesita borrar
 
