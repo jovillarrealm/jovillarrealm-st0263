@@ -20,7 +20,7 @@ spec:
                 name: postgres-config
           env:
             - name: WORDPRESS_DB_HOST
-                value: "postgres-service"
+              value: "postgres-service"
           ports:
             - containerPort: 80
           volumeMounts:
