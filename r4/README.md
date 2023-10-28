@@ -268,5 +268,6 @@ Si se necesita borrar
 
 ## Referencias
 	- https://microk8s.io/docs/nfs
+ 	- https://www.airplane.dev/blog/deploy-postgres-on-kubernetes
  	- https://engr-syedusmanahmad.medium.com/wordpress-on-kubernetes-cluster-step-by-step-guide-749cb53e27c7
   	- https://www.youtube.com/watch?v=DCoBcpOA7W4
