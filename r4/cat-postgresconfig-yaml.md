@@ -154,6 +154,7 @@ Y luego se construye con el deployment, servicio e ingress.
     microk8s kubectl describe pvc wordpress-nfs-pvc
     microk8s kubectl apply -f wordpress-service.yaml
     microk8s kubectl apply -f wordpress-ingress.yaml
+    microk8s kubectl get all -o wide
 
 Si se necesita borrar
 
