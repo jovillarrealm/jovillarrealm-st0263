@@ -5,7 +5,7 @@ metadata:
     labels:
         app: postgres # Labels and Selectors
 spec:
-    type: ClusterIP # Sets service type
+    type: NodePort # Sets service type
     ports:
         - port: 5432 # Sets port to run the postgres application
     selector:
