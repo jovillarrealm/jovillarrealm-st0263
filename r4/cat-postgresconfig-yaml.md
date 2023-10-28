@@ -162,7 +162,7 @@ Si se necesita borrar
     microk8s kubectl delete deployment wordpress-deployment
     microk8s kubectl delete pvc wordpress-nfs-pvc
 
-    microk8s kubectl delete svc postgres
+    microk8s kubectl delete svc postgres-service
     microk8s kubectl delete deployment postgres
     microk8s kubectl delete pvc postgres-pv-claim
     microk8s kubectl delete pv postgres-pv-volume
