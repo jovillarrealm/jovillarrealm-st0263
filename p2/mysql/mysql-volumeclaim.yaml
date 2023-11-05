@@ -23,6 +23,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 200Gi
+      storage: 20Gi
 # [END gke_wordpress_persistent_disks_mysql_volumeclaim_persistentvolumeclaim_mysql_volumeclaim]
 ---

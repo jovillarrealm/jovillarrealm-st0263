@@ -1,0 +1,11 @@
+apiVersion: kustomize/v1
+kind: Kustomization
+resources:
+- mysql-volumeclaim.yaml
+- mysql.yaml
+- mysql-service.yaml
+#- wordpress_cloudsql.yaml
+#- wordpress_cloudsql.yaml.template
+- wordpress-volumeclaim.yaml
+- wordpress.yaml
+- wordpress-service.yaml
