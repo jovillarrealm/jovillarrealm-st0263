@@ -18,17 +18,4 @@ microk8s helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs \
 microk8s kubectl wait pod --selector app.kubernetes.io/name=csi-driver-nfs --for condition=ready --namespace kube-system
 microk8s kubectl get csidrivers
 
-cat <<EOF > pvc-nfs.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-name: my-pvc
-spec:
-storageClassName: nfs-csi
-accessModes: [ReadWriteOnce]
-resources:
-  requests:
-    storage: 5Gi
-EOF
-microk8s kubectl apply -f - < pvc-nfs.yaml
-microk8s kubectl describe pvc my-pvc
+

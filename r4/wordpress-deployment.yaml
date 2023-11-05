@@ -13,18 +13,18 @@ spec:
         app: wordpress
     spec:
       containers:
-      - name: wordpress
-        image: wordpress:latest
-        envFrom:
-        - configMapRef:
-          name: postgres-config
-        ports:
-        - containerPort: 80
-        volumeMounts:
+        - name: wordpress
+          image: wordpress:latest
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: wordpress-nfs-pvc
+              mountPath: /var/www/html
+              subPath: wordpress
+      volumes:
         - name: wordpress-nfs-pvc
-          mountPath: /var/www/html
-          subPath: wordpress
-  volumes:
-  - name: wordpress-nfs-pvc
-    persistentVolumeClaim:
-      claimName: wordpress-nfs-pvc
+          persistentVolumeClaim:
+            claimName: wordpress-nfs-pvc

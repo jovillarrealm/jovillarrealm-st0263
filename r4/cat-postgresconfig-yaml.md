@@ -44,6 +44,7 @@ Tambien vamos a hacer un storage class para tener nfs en un servidor específico
 Se aplica y se chequea
 
     microk8s kubectl apply -f - < sc-nfs.yaml
+    microk8s kubectl get sc
 
 #### BD
 
@@ -142,7 +143,28 @@ Para tener wordpress vamos a usar cositas bonitas SIN EL LOAD BALANCER AAAAAAAAA
     EOF
 Y luego se construye con el deployment, servicio e ingress.
 
-    microk8s kubectl apply -f pvc-nfs.yaml
+    microk8s kubectl apply -f postgres-pv.yaml
+    microk8s kubectl apply -f postgres-pvc.yaml
+    microk8s kubectl apply -f postgres-deployment.yaml
+    microk8s kubectl apply -f postgres-service.yaml
+
+
+    microk8s kubectl apply -f wordpress-nfs-pvc.yaml
     microk8s kubectl apply -f wordpress-deployment.yaml
+    microk8s kubectl describe pvc wordpress-nfs-pvc
     microk8s kubectl apply -f wordpress-service.yaml
-    microk8s kubectl apply -f ingress.yaml
+    microk8s kubectl apply -f wordpress-ingress.yaml
+    microk8s kubectl get all -o wide
+
+Si se necesita borrar
+
+    microk8s kubectl delete ingress wordpress-ingress
+    microk8s kubectl delete svc wordpress-service
+    microk8s kubectl delete deployment wordpress-deployment
+    microk8s kubectl delete pvc wordpress-nfs-pvc
+
+    microk8s kubectl delete svc postgres-service
+    microk8s kubectl delete deployment postgres
+    microk8s kubectl delete pvc postgres-pv-claim
+    microk8s kubectl delete pv postgres-pv-volume
+
