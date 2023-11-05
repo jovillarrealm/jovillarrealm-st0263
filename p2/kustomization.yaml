@@ -5,8 +5,8 @@ resources:
 - mysql-secret.yaml
 - mysql.yaml
 - mysql-service.yaml
+- wordpress-volumeclaim.yaml
 #- wordpress_cloudsql.yaml
 #- wordpress_cloudsql.yaml.template
-- wordpress-volumeclaim.yaml
 - wordpress.yaml
 - wordpress-service.yaml
