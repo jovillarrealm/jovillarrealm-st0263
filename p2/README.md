@@ -52,7 +52,7 @@ En Cloud Shell, configura la región predeterminada para Google Cloud CLI:
 gcloud config set compute/region region
 Reemplaza lo siguiente:
 
-region: Elige la región más cercana a ti. Para obtener más información, consulta Regiones y zonas.
+region: Elige la región más cercana a ti. Por ejemplo, us-central1.
 Configura la variable de entorno PROJECT_ID como el ID de tu proyecto de Google Cloud (project-id).
 
 
@@ -60,11 +60,11 @@ export PROJECT_ID=project-id
 Descarga los archivos de manifiesto de la app desde el repositorio de GitHub:
 
 
-    git clone https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
+    git clone https://github.com/jovillarrealm/jovillarrealm-st0263
 Cambia al directorio con el archivo wordpress-persistent-disks:
 
 
-cd kubernetes-engine-samples/wordpress-persistent-disks
+	cd jovillarrealm-st0263/p2
 Establece la variable de entorno WORKING_DIR:
 
 
@@ -124,7 +124,8 @@ Crea un usuario de base de datos llamado wordpress y una contraseña para que Wo
     gcloud sql users create wordpress --host=% --instance $INSTANCE_NAME \
     --password $CLOUD_SQL_PASSWORD
 Si cierras tu sesión de Cloud Shell, perderás la contraseña. Anótala porque la necesitarás más adelante en este instructivo.
-
+	
+	echo $CLOUD_SQL_PASSWORD
 Terminaste de configurar la base de datos para tu nuevo blog de WordPress.
 
 Implementa WordPress
@@ -216,7 +217,9 @@ Cuando en el resultado se muestre una dirección IP externa, puedes continuar co
 Toma nota del campo de dirección EXTERNAL_IP para usarlo luego.
 
 
+## Video
 
+https://www.youtube.com/watch?v=g1oVDbAZsP4
 
 
 
