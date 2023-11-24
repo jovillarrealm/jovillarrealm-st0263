@@ -12,6 +12,5 @@ saletime timestamp)
 row format delimited
 fields terminated by '\t'
 stored as textfile
-location 's3://jupyterjorge/raw/datasets/tickitdb/sales_tab.txt'
+location 's3://jupyterjorge/raw/datasets/tickitdb/'
 table properties ('numRows'='172000');
-
