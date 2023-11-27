@@ -44,10 +44,26 @@ Ahora correremos el script, el código lo pueden encontrar con el nombre de “P
  https://github.com/jovillarrealm/jovillarrealm-st0263/blob/main/p3/
 
 Una vez ejecutado el código veremos algo como esto:
+
 ![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/d433e6cf-4d4b-400a-ac76-8b5fde424f0d)
 
 
+Los prints nos muestran una base de la información recopilada y nos indica que todo está corriendo perfectamente y se están capturando los datos vivos para ser enviados a Kinesis y generando su persistencia en el bucket S3.
+Con el fin de validar que la información esta llegando correctamente a Kinesis, verificaremos en el panel de control que los datos estén, se debe ver algo como lo siguiente:
 
+![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/9ef9e781-8a1f-480c-a340-e338f2ac4b1d)
+
+![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/d1d8f9c4-5593-4092-8769-6655b8ff61cd)
+
+
+Adicionalmente, utilizando el panel de control de Kinesis, podremos validar por medio de graficas múltiples variables de los datos obtenidos.
+
+
+![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/6e25aabb-5946-421a-adae-62efec5adc09)
+
+Por último, para estar seguros de que los datos se están almacenando de forma persistente, validaremos en el bucket que se estén generando los archivos CSV con los datos obtenidos por medio de la API.
+
+![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/454a8f2d-594d-43fb-ade2-f1674e4b7443)
 
 
 
