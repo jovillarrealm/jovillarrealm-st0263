@@ -68,7 +68,7 @@ Por último, para estar seguros de que los datos se están almacenando de forma 
 
 ## Video
 
-https://youtu.be/b5i2OhZDIM8
+https://youtu.be/Dr9xlgPTN0M
 
 ## Referencias
 
