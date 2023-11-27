@@ -35,6 +35,8 @@
 Se crea un EMR donde se va a correr el programa del productor. 
 
 Se crea de data stream de kinesis al que nos vamos a conectar. 
+![WhatsApp Image 2023-11-26 at 9 19 29 PM](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/617086c2-8e91-425d-a4b6-01320b1949b4)
+
 
 ![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/712153c2-a401-4ece-a262-414ef4a76f6c)
 
