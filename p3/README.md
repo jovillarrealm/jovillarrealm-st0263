@@ -32,6 +32,9 @@
 
 ## Ejecución del proyecto
 
+Se crea un EMR donde se va a correr el programa del productor. 
+
+Se crea de data stream de kinesis al que nos vamos a conectar. 
 
 ![image](https://github.com/jovillarrealm/jovillarrealm-st0263/assets/60147106/712153c2-a401-4ece-a262-414ef4a76f6c)
 
