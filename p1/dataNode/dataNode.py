@@ -18,11 +18,25 @@ MESSAGE_SIZE = 1024 * 1024 * 10 * 2
 
 app = Flask(__name__)
 
-
 class FileService(file_pb2_grpc.FileServiceServicer):
+    """
+    Servidor del servicio de 
+  
+    """
     def ListFiles(self, request, context):
+        """Servicio de  listar los archivos
+        Esta versión se quedo sin namespacear
+
+        Args:
+            request : ¯\_(ツ)_/¯
+            context : sirve para el manejo de errores
+
+        Returns:
+            file_pb2.ListFilesResponse: Lista de nombres de archivos
+        """
         try:
             files = []
+            # FIXME Dizque "." gas
             for file in os.listdir("."):
                 if os.path.isfile(file):
                     files.append(file)
@@ -33,15 +47,32 @@ class FileService(file_pb2_grpc.FileServiceServicer):
             context.set_details(f"Error listing files: '{str(e)}'")
 
     def ReplicateFile(self, request_iterator, context):
+        """Replicación cutre, donde cada dataNode trata de replicar el archivo
+        apenas llega en el servidor asignado en el .env
+
+        Según me acuerdo funcionó con archivos lo suficientemente grandes
+        it fucking worked leave me alone.
+
+        Si hubieramos usado Zookeeper probablemente nos hubieramos evitado tener hacer esta salvajada
+
+        Args:
+            request_iterator (_type_): ಠಿ_ಠ
+            context (_type_): para manejo de errores
+
+        Returns:
+            _type_: _description_
+        """
         try:
             filename = ""
             file_content = b""
+            # Accumulate file content
             for chunk in request_iterator:
                 if not filename:
                     filename = chunk.filename
                 file_content += chunk.content
 
             # Save the received file content to a new file
+            # When there is naming conflict it overwrites
             with open(filename, "ab") as file:
                 file.write(file_content)
 
@@ -56,6 +87,15 @@ class FileService(file_pb2_grpc.FileServiceServicer):
 
 @app.route("/download/<filename>", methods=["GET"])
 def download_http_file(filename):
+    """Ya le doy lo que me pidió
+
+
+    Args:
+        filename (_type_): diga que quiere
+
+    Returns:
+        _type_: ``return flask.send_file(filename, as_attachment=True)`` o algo
+    """
     try:
         if not os.path.isfile(filename):
             return "File not found", 404
@@ -67,6 +107,14 @@ def download_http_file(filename):
 
 @app.route("/upload/<filename>", methods=["POST"])
 def upload_file(filename):
+    """Aquí se guarda el archivo subido al servidor y se replica de manera bloqueante
+
+    Args:
+        filename (str): file name
+
+    Returns:
+        str: Completion status
+    """
     try:
         file_data = request.data
         # Save the file to the filesystem
@@ -82,7 +130,10 @@ def upload_file(filename):
         ) as channel:
             stub = file_pb2_grpc.FileServiceStub(channel)
 
-            # Open the file for reading
+            # Open the file for reading, read from it while sending it to network
+            # Not exactly zero-copy pero file.read creo que al menos no mete todo el archivo en el proceso 
+            # Uno no cree que eso vaya a servir hasta que empieza a meter archivos de 4 Gb en un EC2 con 2 Gb 
+            # RAM entonces no quiero quejas aquí tampoco
             with open(filename, "rb") as file:
                 chunk_size = CHUNK_SIZE
                 while True:
@@ -103,6 +154,9 @@ def upload_file(filename):
 
 
 def serve():
+    """
+    Inicia servidor de grpc y Flask
+    """
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=10),
         options=[
@@ -114,11 +168,12 @@ def serve():
     address = f"{env('GRPC_SERVER_IP')}:50051"
     server.add_insecure_port(address)
     server.start()
+
     print(f"gRPC Server started on '{address}'")
+
 
     # Start the Flask app for HTTP downloads
     app.run(host=env("GRPC_SERVER_IP"), port=8080)  # Listen on all network interfaces
-    #app.run(port=8080)  # Listen on all network interfaces
 
 
 if __name__ == "__main__":
